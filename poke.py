@@ -39,9 +39,9 @@ def main():
 		browser=login(user, passw)
 	
 	try:
-		pokepage=browser.open(pokeURL)
 		delay=1
 		while True:
+			pokepage=browser.open(pokeURL)
 			pokelinks=[]
 			for pokelink in browser.links(text_regex="나도 콕 찔러보기"):
 				print "we found a poke!"
@@ -51,12 +51,12 @@ def main():
 				res=browser.open(link)
 				res.close()
 				print "poke back!!"
+			pokepage.close()
 			if find==0:
 				delay=(delay*2)%MAX_DELAY;
 			else:
 				delay=(delay/2)+1;
 			time.sleep(delay);
-		pokepage.close()
 	except:
 		print "Error!!!!"
 
